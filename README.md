@@ -1,0 +1,20 @@
+# siteseo-site
+
+The public page for [siteseo](https://github.com/dtsoden/siteseo), served at
+https://siteseo.davidsoden.com from Cloudflare Pages.
+
+Everything served lives in `site/`. It is plain HTML with no build step.
+
+The release line under the main heading reads the latest release from the
+GitHub API in the visitor's browser, so publishing a siteseo release updates the
+page without a redeploy.
+
+Deploy after changing anything in `site/`:
+
+```
+npx wrangler pages deploy site --project-name siteseo-site --branch main
+```
+
+The brand files are in `site/` (`icon.svg`, `favicon.ico`, the PNG icons) and
+`site/brand/` (`logo.svg` for light backgrounds, `logo-dark.svg` for dark). The
+wordmark is set in Inter Bold, converted to outlines.
