@@ -1,7 +1,8 @@
 # siteseo-site
 
 The public page for [siteseo](https://github.com/dtsoden/siteseo), served at
-https://siteseo.davidsoden.com from Cloudflare Pages.
+https://siteseo.davidsoden.com from Cloudflare, as a Worker that serves static
+files. `wrangler.jsonc` holds the project name and the custom domain.
 
 Everything served lives in `site/`. It is plain HTML with no build step.
 
@@ -12,7 +13,7 @@ page without a redeploy.
 Deploy after changing anything in `site/`:
 
 ```
-npx wrangler pages deploy site --project-name siteseo-site --branch main
+npx wrangler deploy
 ```
 
 The brand files are in `site/` (`icon.svg`, `favicon.ico`, the PNG icons) and

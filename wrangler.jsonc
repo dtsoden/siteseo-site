@@ -1,0 +1,10 @@
+{
+  "name": "siteseo-site",
+  "compatibility_date": "2026-10-12",
+  "assets": {
+    "directory": "site"
+  },
+  "routes": [
+    { "pattern": "siteseo.davidsoden.com", "custom_domain": true }
+  ]
+}
