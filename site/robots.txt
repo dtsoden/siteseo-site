@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://siteseo.davidsoden.com/sitemap.xml
+Sitemap: https://siteseoai.davidsoden.com/sitemap.xml

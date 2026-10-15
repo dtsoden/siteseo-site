@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>siteseo: when your customers ask, be the answer</title>
-<meta name="description" content="siteseo checks whether your website can be found in Google and in AI answers like ChatGPT, tells you what is in the way in plain English, and helps you fix it. Free and open source.">
-<link rel="canonical" href="https://siteseo.davidsoden.com/">
+<title>siteseoai: when your customers ask, be the answer</title>
+<meta name="description" content="siteseoai checks whether your website can be found in Google and in AI answers like ChatGPT, tells you what is in the way in plain English, and helps you fix it. Free and open source.">
+<link rel="canonical" href="https://siteseoai.davidsoden.com/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#1E3A8A">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://siteseo.davidsoden.com/">
-<meta property="og:title" content="siteseo: when your customers ask, be the answer">
+<meta property="og:url" content="https://siteseoai.davidsoden.com/">
+<meta property="og:title" content="siteseoai: when your customers ask, be the answer">
 <meta property="og:description" content="Find out what keeps your website out of Google and AI answers, and fix it. Free and open source.">
-<meta property="og:image" content="https://siteseo.davidsoden.com/og.png">
+<meta property="og:image" content="https://siteseoai.davidsoden.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,15 +26,15 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "siteseo",
-  "url": "https://siteseo.davidsoden.com/",
+  "name": "siteseoai",
+  "url": "https://siteseoai.davidsoden.com/",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Windows, macOS, Linux",
   "description": "Checks whether your website can be found in Google and in AI assistant answers, explains what is in the way, and helps you fix it.",
   "license": "https://opensource.org/licenses/MIT",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "David Soden", "url": "https://davidsoden.com/" },
-  "codeRepository": "https://github.com/dtsoden/siteseo"
+  "codeRepository": "https://github.com/dtsoden/siteseoai"
 }
 </script>
 <style>
@@ -65,11 +65,15 @@
   .intro { font-size: 20px; max-width: 640px; margin: 16px 0 0; }
 
   /* header */
-  .top { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; max-width: 1120px; margin: 0 auto; }
+  .top { position: relative; z-index: 20; display: flex; align-items: center; gap: 26px; padding: 12px 20px; max-width: 1120px; margin: 0 auto; }
   .top img { height: 40px; width: auto; display: block; }
-  .top nav { display: flex; gap: 26px; align-items: center; }
+  .top nav { display: flex; gap: 26px; align-items: center; margin-left: auto; }
   .top nav a { text-decoration: none; color: var(--body); font-weight: 600; font-size: 16px; }
-  .top nav a.pill { background: var(--night); color: #fff; padding: 9px 16px; border-radius: 999px; }
+  .top a.pill { text-decoration: none; font-weight: 600; font-size: 16px; background: var(--night); color: #fff; padding: 9px 16px; border-radius: 999px; }
+  .menu-btn { display: none; width: 44px; height: 44px; margin-left: -14px; border: 0; border-radius: 10px; background: none; color: var(--ink); cursor: pointer; place-items: center; }
+  .menu-btn svg { width: 26px; height: 26px; }
+  .menu-btn .x, .menu-btn[aria-expanded="true"] .bars { display: none; }
+  .menu-btn[aria-expanded="true"] .x { display: block; }
 
   .btn { display: inline-block; padding: 15px 26px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 18px; }
   .btn.go { background: var(--navy); color: #fff; box-shadow: 0 8px 24px -10px rgba(30,58,138,.7); }
@@ -237,32 +241,46 @@
   .modal-close { background: none; border: 0; color: #fff; font-size: 28px; line-height: 1; cursor: pointer; padding: 0 4px; }
   dialog#report-modal iframe { width: 100%; height: calc(100% - 50px); border: 0; display: block; background: #E9EEF7; }
   @media (max-width: 900px) {
-    .hero .wrap, .doors, .benefit, .cost { grid-template-columns: 1fr; }
+    .hero .wrap, .doors, .benefit, .cost, .steps { grid-template-columns: minmax(0, 1fr); }
     .benefit:nth-of-type(even) .pic { order: 0; }
     .promises { grid-template-columns: 1fr 1fr; }
     .foot-grid { grid-template-columns: 1fr 1fr; }
-    .steps { grid-template-columns: 1fr; }
     .badge { margin: -12px 8px 0 8px; max-width: none; }
     dialog#report-modal { width: 100vw; height: 100vh; max-width: none; max-height: none; border-radius: 0; }
     .modal-bar span { display: none; }
     .hero { padding-bottom: 80px; }
-    .top nav a:not(.pill) { display: none; }
+    .top a.pill { margin-left: auto; }
+    .menu-btn { display: grid; }
+    .top nav { display: none; position: absolute; top: 100%; left: 12px; right: 12px; margin: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 8px; background: #fff; border-radius: 16px; box-shadow: 0 24px 50px -20px rgba(11,27,63,.45), 0 0 0 1px rgba(11,27,63,.06); }
+    .top.open nav { display: flex; }
+    .top nav a { padding: 14px 16px; border-radius: 10px; font-size: 18px; }
+    .top nav a:hover { background: var(--mist); }
     section { padding: 72px 0; }
     .benefit { gap: 28px; }
   }
-  @media (max-width: 560px) { .promises { grid-template-columns: 1fr; } body { font-size: 17px; } }
+  @media (max-width: 560px) {
+    .promises { grid-template-columns: 1fr; }
+    .fix { grid-template-columns: 34px minmax(0, 1fr); align-items: start; row-gap: 6px; }
+    .fix .v { grid-column: 2; justify-self: start; }
+    .pic { padding: 18px; }
+  }
 </style>
 </head>
 <body>
 
 <header class="top">
-  <a href="/" aria-label="siteseo home"><img src="/brand/logo.svg" alt="siteseo" width="235" height="64"></a>
-  <nav>
+  <a href="/" aria-label="siteseoai home"><img src="/brand/logo.svg" alt="siteseoai" width="281" height="64"></a>
+  <nav id="site-menu" aria-label="Main">
     <a href="#how">How it helps</a>
     <a href="#cost">Cost</a>
-    <a href="https://github.com/dtsoden/siteseo">GitHub</a>
-    <a class="pill" href="#start">Install</a>
+    <a href="/example-report" data-report>Example report</a>
+    <a href="https://github.com/dtsoden/siteseoai">GitHub</a>
   </nav>
+  <a class="pill" href="#start">Install</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu">
+    <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
 </header>
 
 <main>
@@ -270,9 +288,9 @@
   <div class="wrap">
     <div>
       <h1>When your customers ask, <em>be the answer.</em></h1>
-      <p class="lede">People find businesses two ways now: a Google search, or a question to an AI assistant like ChatGPT. siteseo shows you what keeps your website out of both, in plain English, and helps you fix it.</p>
+      <p class="lede">People find businesses two ways now: a Google search, or a question to an AI assistant like ChatGPT. siteseoai shows you what keeps your website out of both, in plain English, and helps you fix it.</p>
       <div class="btns">
-        <a class="btn go" href="#start">Install siteseo, free</a>
+        <a class="btn go" href="#start">Install siteseoai, free</a>
         <a class="btn quiet" href="/example-report" data-report>See an example report</a>
       </div>
       <div class="trust"><span>Free and open source</span><span>Works on any website you own</span><span>Never spends money without asking</span></div>
@@ -299,7 +317,7 @@
       </div>
       <div class="badge">
         <img src="/icon.svg" alt="">
-        <div><strong>Cited 4 of 9 times</strong><span>siteseo asks the assistants your customers' questions and counts how often they name you.</span></div>
+        <div><strong>Cited 4 of 9 times</strong><span>siteseoai asks the assistants your customers' questions and counts how often they name you.</span></div>
       </div>
     </div>
   </div>
@@ -308,7 +326,7 @@
 <section>
   <div class="wrap">
     <p class="kicker">Why it matters</p>
-    <h2>Your website has two front doors now. siteseo checks both.</h2>
+    <h2>Your website has two front doors now. siteseoai checks both.</h2>
     <p class="intro">A Google check alone misses half the picture. Some of your customers skip the search and ask an assistant instead, and an assistant can only recommend a site it is able to read.</p>
     <div class="doors">
       <div class="door">
@@ -364,7 +382,7 @@
     <div class="benefit">
       <div>
         <h3>Stop blocking AI by accident</h3>
-        <p>A setting at your web host or firewall can turn AI assistants away without anyone noticing. siteseo visits your site as each assistant, compares what it got with what you meant to allow, and points to the exact setting when they don't match.</p>
+        <p>A setting at your web host or firewall can turn AI assistants away without anyone noticing. siteseoai visits your site as each assistant, compares what it got with what you meant to allow, and points to the exact setting when they don't match.</p>
       </div>
       <div class="pic" aria-label="Example of an AI access check">
         <div class="cap"><span>Who can read your site</span><span>Example</span></div>
@@ -388,8 +406,8 @@
       </div>
       <div class="pic" aria-label="Example of the check before publishing">
         <div class="cap"><span>The check before you publish</span><span>Example</span></div>
-        <div class="term"><span class="p">$</span> siteseo gate<br><span class="bad">Held back: 1 problem</span><br>/pricing has no page title</div>
-        <div class="term"><span class="p">$</span> siteseo gate<br><span class="good">All clear. Safe to publish.</span></div>
+        <div class="term"><span class="p">$</span> siteseoai gate<br><span class="bad">Held back: 1 problem</span><br>/pricing has no page title</div>
+        <div class="term"><span class="p">$</span> siteseoai gate<br><span class="good">All clear. Safe to publish.</span></div>
       </div>
     </div>
 
@@ -449,7 +467,7 @@
           <li>Asking ChatGPT, Claude and Perplexity your customers' questions to see whether they name you</li>
           <li>Keyword and competitor research</li>
         </ul>
-        <p>You pay those services directly. siteseo shows the estimated cost first and stops at the monthly limit you set.</p>
+        <p>You pay those services directly. siteseoai shows the estimated cost first and stops at the monthly limit you set.</p>
       </div>
     </div>
   </div>
@@ -459,25 +477,25 @@
   <div class="wrap">
     <p class="kicker">Get started</p>
     <h2>Running in a few minutes</h2>
-    <p class="intro">siteseo works inside Claude Code, Anthropic's assistant for working on code and websites.</p>
+    <p class="intro">siteseoai works inside Claude Code, Anthropic's assistant for working on code and websites.</p>
     <div class="steps">
       <div class="step">
         <h3>Get Claude Code</h3>
         <p>It comes with a Claude subscription. <a href="https://code.claude.com/docs">Anthropic's guide</a> shows how to install it.</p>
       </div>
       <div class="step">
-        <h3>Add siteseo</h3>
+        <h3>Add siteseoai</h3>
         <p>Paste these two lines into Claude Code.</p>
-        <div class="code"><pre>/plugin marketplace add dtsoden/siteseo
-/plugin install siteseo@dtsoden-siteseo</pre><button class="copy" type="button">Copy</button></div>
+        <div class="code"><pre>/plugin marketplace add dtsoden/siteseoai
+/plugin install siteseoai@dtsoden-siteseoai</pre><button class="copy" type="button">Copy</button></div>
       </div>
       <div class="step">
         <h3>Check your website</h3>
         <p>Open your website's folder in Claude Code and type this. It asks a few questions, then writes your first report.</p>
-        <div class="code"><pre>/siteseo</pre><button class="copy" type="button">Copy</button></div>
+        <div class="code"><pre>/siteseoai</pre><button class="copy" type="button">Copy</button></div>
       </div>
     </div>
-    <p style="margin-top:26px">Want your Google, Bing and Analytics numbers in the report? The <a href="https://github.com/dtsoden/siteseo/blob/main/docs/setup/README.md">setup guide</a> walks you through each one, screen by screen.</p>
+    <p style="margin-top:26px">Want your Google, Bing and Analytics numbers in the report? The <a href="https://github.com/dtsoden/siteseoai/blob/main/docs/setup/README.md">setup guide</a> walks you through each one, screen by screen.</p>
   </div>
 </section>
 
@@ -487,7 +505,7 @@
     <h2>Before you install</h2>
     <details>
       <summary>Do I need to be a programmer?</summary>
-      <p>No. You talk to siteseo in plain English inside Claude Code, and it explains every problem it finds. It works best with your website's files on your computer, so it can check changes before you publish and make fixes for you.</p>
+      <p>No. You talk to siteseoai in plain English inside Claude Code, and it explains every problem it finds. It works best with your website's files on your computer, so it can check changes before you publish and make fixes for you.</p>
     </details>
     <details>
       <summary>Will it change my website without asking?</summary>
@@ -495,11 +513,11 @@
     </details>
     <details>
       <summary>Does it guarantee I'll show up in AI answers?</summary>
-      <p>No tool can promise that, and siteseo doesn't. It removes what stops assistants from reading your site, and then measures how often they name you, so you can see whether things are moving.</p>
+      <p>No tool can promise that, and siteseoai doesn't. It removes what stops assistants from reading your site, and then measures how often they name you, so you can see whether things are moving.</p>
     </details>
     <details>
       <summary>How do I get updates?</summary>
-      <p>In Claude Code, run <code>/plugin</code>, open the Installed tab, choose siteseo and select Update now. What changed in each version is on the <a href="https://github.com/dtsoden/siteseo/releases">releases page</a>.</p>
+      <p>In Claude Code, run <code>/plugin</code>, open the Installed tab, choose siteseoai and select Update now. What changed in each version is on the <a href="https://github.com/dtsoden/siteseoai/releases">releases page</a>.</p>
     </details>
   </div>
 </section>
@@ -508,31 +526,31 @@
   <div class="wrap">
     <h2>Find out what's keeping customers from finding you.</h2>
     <p>Your first report takes a few minutes and costs nothing.</p>
-    <a class="btn go" href="#start">Install siteseo, free</a>
+    <a class="btn go" href="#start">Install siteseoai, free</a>
   </div>
 </div>
 </main>
 
-<dialog id="report-modal" aria-label="Example siteseo report">
+<dialog id="report-modal" aria-label="Example siteseoai report">
   <div class="modal-bar">
-    <span>Example report for a sample business, Acme. Every finding is real output from siteseo.</span>
+    <span>Example report for a sample business, Acme. Every finding is real output from siteseoai.</span>
     <a href="/example-report" target="_blank" rel="noopener">Open full size</a>
     <button type="button" class="modal-close" aria-label="Close">&times;</button>
   </div>
-  <iframe title="Example siteseo report" loading="lazy"></iframe>
+  <iframe title="Example siteseoai report" loading="lazy"></iframe>
 </dialog>
 
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-col">
-        <img src="/brand/logo.svg" width="176" height="48" alt="siteseo">
-        <p>siteseo is a brand of <a href="https://davidsoden.com">DavidSoden.com</a>.</p>
+        <img src="/brand/logo.svg" width="211" height="48" alt="siteseoai">
+        <p>siteseoai is a brand of <a href="https://davidsoden.com">DavidSoden.com</a>.</p>
         <ul><li><a href="https://davidsoden.com/#contact">Contact</a></li></ul>
       </div>
-      <div class="foot-col"><h2>Product</h2><ul><li><a href="#how">How it helps</a></li><li><a href="#cost">Cost</a></li><li><a href="#start">Get started</a></li><li><a href="https://github.com/dtsoden/siteseo/releases">What's new</a></li></ul></div>
-      <div class="foot-col"><h2>Guides</h2><ul><li><a href="https://github.com/dtsoden/siteseo/blob/main/docs/README.md">Documentation</a></li><li><a href="https://github.com/dtsoden/siteseo/blob/main/docs/setup/README.md">Setup guide</a></li><li><a href="https://github.com/dtsoden/siteseo/blob/main/docs/setup/troubleshooting.md">Troubleshooting</a></li></ul></div>
-      <div class="foot-col"><h2>Code</h2><ul><li><a href="https://github.com/dtsoden/siteseo">GitHub</a></li></ul></div>
+      <div class="foot-col"><h2>Product</h2><ul><li><a href="#how">How it helps</a></li><li><a href="#cost">Cost</a></li><li><a href="#start">Get started</a></li><li><a href="https://github.com/dtsoden/siteseoai/releases">What's new</a></li></ul></div>
+      <div class="foot-col"><h2>Guides</h2><ul><li><a href="https://github.com/dtsoden/siteseoai/blob/main/docs/README.md">Documentation</a></li><li><a href="https://github.com/dtsoden/siteseoai/blob/main/docs/setup/README.md">Setup guide</a></li><li><a href="https://github.com/dtsoden/siteseoai/blob/main/docs/setup/troubleshooting.md">Troubleshooting</a></li></ul></div>
+      <div class="foot-col"><h2>Code</h2><ul><li><a href="https://github.com/dtsoden/siteseoai">GitHub</a></li></ul></div>
     </div>
     <div class="foot-fine"><p>&copy; <span id="year">2026</span> DavidSoden.com. All rights reserved.</p></div>
   </div>
@@ -540,6 +558,13 @@
 
 <script>
   document.getElementById("year").textContent = new Date().getFullYear();
+  const header = document.querySelector(".top");
+  const menuBtn = header.querySelector(".menu-btn");
+  const setMenu = (open) => { header.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", open); };
+  menuBtn.addEventListener("click", () => setMenu(!header.classList.contains("open")));
+  for (const a of header.querySelectorAll("nav a")) a.addEventListener("click", () => setMenu(false));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && header.classList.contains("open")) { setMenu(false); menuBtn.focus(); } });
+  document.addEventListener("click", (e) => { if (!header.contains(e.target)) setMenu(false); });
   for (const b of document.querySelectorAll(".copy")) {
     b.addEventListener("click", async () => {
       const text = b.parentElement.querySelector("pre").innerText;
@@ -561,7 +586,7 @@
   modal.querySelector(".modal-close").addEventListener("click", () => modal.close());
   modal.addEventListener("click", (event) => { if (event.target === modal) modal.close(); });
   // Latest release, read live from GitHub so the page never needs redeploying.
-  fetch("https://api.github.com/repos/dtsoden/siteseo/releases/latest")
+  fetch("https://api.github.com/repos/dtsoden/siteseoai/releases/latest")
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(rel => {
       const v = (rel.tag_name || "").replace(/^.*v/, "");

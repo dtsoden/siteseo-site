@@ -1,5 +1,5 @@
 {
-  "name": "siteseo-site",
+  "name": "siteseoai-site",
   "compatibility_date": "2026-10-12",
   "workers_dev": false,
   "preview_urls": true,
@@ -7,6 +7,6 @@
     "directory": "site"
   },
   "routes": [
-    { "pattern": "siteseo.davidsoden.com", "custom_domain": true }
+    { "pattern": "siteseoai.davidsoden.com", "custom_domain": true }
   ]
 }
