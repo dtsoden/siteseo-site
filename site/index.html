@@ -498,12 +498,13 @@
 <footer>
   <div class="wrap">
     <img src="/brand/logo.svg" alt="siteseo" width="96" height="26">
-    <span>&copy; 2026 DavidSoden.com. All rights reserved.</span>
+    <span>&copy; <span id="year">2026</span> DavidSoden.com. All rights reserved.</span>
     <span><a href="https://github.com/dtsoden/siteseo">GitHub</a> &middot; <a href="https://github.com/dtsoden/siteseo/blob/main/docs/README.md">Guide</a> &middot; <a href="https://github.com/dtsoden/siteseo/releases">Releases</a></span>
   </div>
 </footer>
 
 <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
   for (const b of document.querySelectorAll(".copy")) {
     b.addEventListener("click", async () => {
       const text = b.parentElement.querySelector("pre").innerText;
