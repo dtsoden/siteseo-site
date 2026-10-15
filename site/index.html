@@ -273,7 +273,7 @@
       <p class="lede">People find businesses two ways now: a Google search, or a question to an AI assistant like ChatGPT. siteseo shows you what keeps your website out of both, in plain English, and helps you fix it.</p>
       <div class="btns">
         <a class="btn go" href="#start">Install siteseo, free</a>
-        <a class="btn quiet" href="/example-report.html" data-report>See an example report</a>
+        <a class="btn quiet" href="/example-report" data-report>See an example report</a>
       </div>
       <div class="trust"><span>Free and open source</span><span>Works on any website you own</span><span>Never spends money without asking</span></div>
       <p class="release" id="release"></p>
@@ -397,7 +397,7 @@
       <div>
         <h3>Get a to-do list you can hand off</h3>
         <p>Every report ends with a plain-English brief: what's wrong, how to fix it, how many visitors it affects, and the published rule behind it. Hand it to whoever runs your site, or let Claude make the safe fixes for you after you approve each one.</p>
-        <p><a href="/example-report.html" data-report>See a full example report</a>, made for a sample business called Acme.</p>
+        <p><a href="/example-report" data-report>See a full example report</a>, made for a sample business called Acme.</p>
       </div>
       <div class="pic brief" aria-label="Example of one item from the brief">
         <div class="cap"><span>From your brief</span><span>Example</span></div>
@@ -516,7 +516,7 @@
 <dialog id="report-modal" aria-label="Example siteseo report">
   <div class="modal-bar">
     <span>Example report for a sample business, Acme. Every finding is real output from siteseo.</span>
-    <a href="/example-report.html" target="_blank" rel="noopener">Open full size</a>
+    <a href="/example-report" target="_blank" rel="noopener">Open full size</a>
     <button type="button" class="modal-close" aria-label="Close">&times;</button>
   </div>
   <iframe title="Example siteseo report" loading="lazy"></iframe>
@@ -554,7 +554,7 @@
     link.addEventListener("click", (event) => {
       if (typeof modal.showModal !== "function") return;
       event.preventDefault();
-      if (!frame.src) frame.src = "/example-report.html";
+      if (!frame.src) frame.src = "/example-report";
       modal.showModal();
     });
   }
