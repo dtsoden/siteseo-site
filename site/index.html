@@ -217,15 +217,23 @@
   .final p { font-size: 20px; margin: 18px auto 30px; max-width: 560px; }
   .final .btn.go { background: var(--signal); color: var(--night); }
 
-  footer { padding: 34px 0 44px; font-size: 15px; color: var(--muted); }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; }
-  footer img { height: 26px; width: auto; display: block; }
-  footer a { color: var(--muted); }
+  .site-foot { padding: 56px 0 30px; font-size: 15px; color: var(--muted); border-top: 1px solid var(--line); }
+  .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px; }
+  .foot-col img { display: block; height: 48px; width: auto; }
+  .foot-col p { margin: 12px 0 0; }
+  .foot-col h2 { font: 700 13px var(--text); text-transform: uppercase; letter-spacing: .08em; color: var(--ink); margin: 6px 0 14px; }
+  .foot-col ul { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 8px; }
+  .foot-col h2 + ul { margin-top: 0; }
+  .site-foot a { color: var(--body); text-decoration: none; }
+  .site-foot a:hover { color: var(--navy); text-decoration: underline; }
+  .foot-fine { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; }
+  .foot-fine p { margin: 0; }
 
   @media (max-width: 900px) {
     .hero .wrap, .doors, .benefit, .cost { grid-template-columns: 1fr; }
     .benefit:nth-of-type(even) .pic { order: 0; }
     .promises { grid-template-columns: 1fr 1fr; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
     .steps { grid-template-columns: 1fr; }
     .badge { margin: -12px 8px 0 8px; max-width: none; }
     .hero { padding-bottom: 80px; }
@@ -495,11 +503,19 @@
 </div>
 </main>
 
-<footer>
+<footer class="site-foot">
   <div class="wrap">
-    <img src="/brand/logo.svg" alt="siteseo" width="96" height="26">
-    <span>Open source, MIT license. Made by <a href="https://davidsoden.com/">David Soden</a>.</span>
-    <span><a href="https://github.com/dtsoden/siteseo">GitHub</a> &middot; <a href="https://github.com/dtsoden/siteseo/blob/main/docs/README.md">Guide</a> &middot; <a href="https://github.com/dtsoden/siteseo/releases">Releases</a></span>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <img src="/brand/logo.svg" width="176" height="48" alt="siteseo">
+        <p>siteseo is a brand of <a href="https://davidsoden.com">DavidSoden.com</a>.</p>
+        <ul><li><a href="https://davidsoden.com/#contact">Contact</a></li></ul>
+      </div>
+      <div class="foot-col"><h2>Product</h2><ul><li><a href="#how">How it helps</a></li><li><a href="#cost">Cost</a></li><li><a href="#start">Get started</a></li><li><a href="https://github.com/dtsoden/siteseo/releases">What's new</a></li></ul></div>
+      <div class="foot-col"><h2>Guides</h2><ul><li><a href="https://github.com/dtsoden/siteseo/blob/main/docs/README.md">Documentation</a></li><li><a href="https://github.com/dtsoden/siteseo/blob/main/docs/setup/README.md">Setup guide</a></li><li><a href="https://github.com/dtsoden/siteseo/blob/main/docs/setup/troubleshooting.md">Troubleshooting</a></li></ul></div>
+      <div class="foot-col"><h2>Code</h2><ul><li><a href="https://github.com/dtsoden/siteseo">GitHub</a></li></ul></div>
+    </div>
+    <div class="foot-fine"><p>&copy; 2026 DavidSoden.com. All rights reserved.</p></div>
   </div>
 </footer>
 
