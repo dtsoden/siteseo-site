@@ -229,6 +229,13 @@
   .foot-fine { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; }
   .foot-fine p { margin: 0; }
 
+  dialog#report-modal { width: min(1000px, 94vw); height: 90vh; padding: 0; border: 0; border-radius: 18px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(11,27,63,.6); }
+  dialog#report-modal::backdrop { background: rgba(11,27,63,.6); }
+  .modal-bar { display: flex; align-items: center; gap: 16px; padding: 12px 16px 12px 20px; background: var(--night); color: #CBD5E1; font-size: 14px; }
+  .modal-bar span { flex: 1; }
+  .modal-bar a { color: var(--signal); font-weight: 600; white-space: nowrap; }
+  .modal-close { background: none; border: 0; color: #fff; font-size: 28px; line-height: 1; cursor: pointer; padding: 0 4px; }
+  dialog#report-modal iframe { width: 100%; height: calc(100% - 50px); border: 0; display: block; background: #E9EEF7; }
   @media (max-width: 900px) {
     .hero .wrap, .doors, .benefit, .cost { grid-template-columns: 1fr; }
     .benefit:nth-of-type(even) .pic { order: 0; }
@@ -236,6 +243,8 @@
     .foot-grid { grid-template-columns: 1fr 1fr; }
     .steps { grid-template-columns: 1fr; }
     .badge { margin: -12px 8px 0 8px; max-width: none; }
+    dialog#report-modal { width: 100vw; height: 100vh; max-width: none; max-height: none; border-radius: 0; }
+    .modal-bar span { display: none; }
     .hero { padding-bottom: 80px; }
     .top nav a:not(.pill) { display: none; }
     section { padding: 72px 0; }
@@ -264,7 +273,7 @@
       <p class="lede">People find businesses two ways now: a Google search, or a question to an AI assistant like ChatGPT. siteseo shows you what keeps your website out of both, in plain English, and helps you fix it.</p>
       <div class="btns">
         <a class="btn go" href="#start">Install siteseo, free</a>
-        <a class="btn quiet" href="#how">See how it helps</a>
+        <a class="btn quiet" href="/example-report.html" data-report>See an example report</a>
       </div>
       <div class="trust"><span>Free and open source</span><span>Works on any website you own</span><span>Never spends money without asking</span></div>
       <p class="release" id="release"></p>
@@ -388,6 +397,7 @@
       <div>
         <h3>Get a to-do list you can hand off</h3>
         <p>Every report ends with a plain-English brief: what's wrong, how to fix it, how many visitors it affects, and the published rule behind it. Hand it to whoever runs your site, or let Claude make the safe fixes for you after you approve each one.</p>
+        <p><a href="/example-report.html" data-report>See a full example report</a>, made for a sample business called Acme.</p>
       </div>
       <div class="pic brief" aria-label="Example of one item from the brief">
         <div class="cap"><span>From your brief</span><span>Example</span></div>
@@ -503,6 +513,15 @@
 </div>
 </main>
 
+<dialog id="report-modal" aria-label="Example siteseo report">
+  <div class="modal-bar">
+    <span>Example report for a sample business, Acme. Every finding is real output from siteseo.</span>
+    <a href="/example-report.html" target="_blank" rel="noopener">Open full size</a>
+    <button type="button" class="modal-close" aria-label="Close">&times;</button>
+  </div>
+  <iframe title="Example siteseo report" loading="lazy"></iframe>
+</dialog>
+
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-grid">
@@ -529,6 +548,18 @@
       setTimeout(() => { b.textContent = "Copy"; }, 2000);
     });
   }
+  const modal = document.getElementById("report-modal");
+  const frame = modal.querySelector("iframe");
+  for (const link of document.querySelectorAll("[data-report]")) {
+    link.addEventListener("click", (event) => {
+      if (typeof modal.showModal !== "function") return;
+      event.preventDefault();
+      if (!frame.src) frame.src = "/example-report.html";
+      modal.showModal();
+    });
+  }
+  modal.querySelector(".modal-close").addEventListener("click", () => modal.close());
+  modal.addEventListener("click", (event) => { if (event.target === modal) modal.close(); });
   // Latest release, read live from GitHub so the page never needs redeploying.
   fetch("https://api.github.com/repos/dtsoden/siteseo/releases/latest")
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
