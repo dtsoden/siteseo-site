@@ -1,6 +1,8 @@
 {
   "name": "siteseo-site",
   "compatibility_date": "2026-10-12",
+  "workers_dev": false,
+  "preview_urls": true,
   "assets": {
     "directory": "site"
   },
